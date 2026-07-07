@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from src.monitoramento_impressoras.api import rotas_impressao
 
 app = FastAPI(
     title="Centro de Comando de Telemetria",
@@ -7,9 +8,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Acoplamento das Rotas
+app.include_router(rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"])
+
 @app.get("/", include_in_schema=False)
 async def root():
-    # Redireciona a raiz direto para a documentação interativa (Swagger)
     return RedirectResponse(url="/docs")
 
 @app.get("/health", tags=["Sistema"])
