@@ -1,0 +1,25 @@
+# Ambientes Virtuais e Dependências
+.venv/
+venv/
+env/
+__pypackages__/
+poetry.lock
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Configurações de IDE (VS Code)
+.vscode/
+
+# Arquivos locais e de Banco de Dados
+.env
+*.db
+*.sqlite3
+
+# Arquivos temporários do Motor de Impressão
+*.pdf
+*.pcl
+*.tmpcle
