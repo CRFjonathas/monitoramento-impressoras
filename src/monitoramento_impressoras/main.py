@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from src.monitoramento_impressoras.api import rotas_impressao
+from src.monitoramento_impressoras.api import rotas_impressao, rotas_manutencao # <--- NOVA IMPORTAÇÃO
 
 app = FastAPI(
     title="Centro de Comando de Telemetria",
@@ -10,6 +10,7 @@ app = FastAPI(
 
 # Acoplamento das Rotas
 app.include_router(rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"])
+app.include_router(rotas_manutencao.router, prefix="/api/v1/manutencao", tags=["Manutenção"]) # <--- NOVO ACOPLAMENTO
 
 @app.get("/", include_in_schema=False)
 async def root():
