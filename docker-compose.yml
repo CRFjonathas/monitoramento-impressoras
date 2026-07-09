@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: centro_comando_api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mapeia a pasta atual para o /app, permitindo que o SQLite salve os dados 
+      # fisicamente na sua máquina e não perca os incidentes se o contêiner reiniciar
+      - .:/app
+    env_file:
+      - .env
+    restart: unless-stopped
