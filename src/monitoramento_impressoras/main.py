@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from src.monitoramento_impressoras.api import rotas_impressao, rotas_manutencao # <--- NOVA IMPORTAÇÃO
+from fastapi.middleware.cors import CORSMiddleware 
+
 from src.monitoramento_impressoras.api import rotas_impressao, rotas_manutencao, rotas_telemetria
 
 app = FastAPI(
@@ -9,9 +10,28 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# --- CONFIGURAÇÃO DE CORS ---
+# Lista de "origens" (Frontends) que têm permissão para consumir esta API.
+# Adicionamos as portas mais comuns: React (3000), Vite (5173) e Live Server (5500).
+origens_permitidas = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5500",
+    "http://localhost"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origens_permitidas,  # Permite apenas as origens da lista
+    allow_credentials=True,            # Permite envio de cookies/tokens de autenticação
+    allow_methods=["*"],               # Permite todos os métodos (GET, POST, PUT, DELETE)
+    allow_headers=["*"],               # Permite todos os cabeçalhos
+)
+# ----------------------------
+
 # Acoplamento das Rotas
 app.include_router(rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"])
-app.include_router(rotas_manutencao.router, prefix="/api/v1/manutencao", tags=["Manutenção"]) 
+app.include_router(rotas_manutencao.router, prefix="/api/v1/manutencao", tags=["Manutenção"])
 app.include_router(rotas_telemetria.router, prefix="/api/v1/telemetria", tags=["Monitoramento Zabbix"])
 
 @app.get("/", include_in_schema=False)
