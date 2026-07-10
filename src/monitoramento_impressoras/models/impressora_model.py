@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from src.monitoramento_impressoras.core.database import Base
 
+
 class Impressora(Base):
     __tablename__ = "impressoras"
 
@@ -9,6 +10,6 @@ class Impressora(Base):
     modelo = Column(String, index=True)
     numero_serie = Column(String, unique=True, index=True)
     ip = Column(String, unique=True, index=True)
-    
+
     # Controle de vida útil: permite desativar sem apagar do histórico
     ativa = Column(Boolean, default=True)

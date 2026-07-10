@@ -1,17 +1,25 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 
+
 # Base para compartilhar campos comuns
 class IncidenteBase(BaseModel):
-    descricao_defeito: str = Field(..., description="Descrição detalhada do defeito apresentado")
+    descricao_defeito: str = Field(
+        ..., description="Descrição detalhada do defeito apresentado"
+    )
+
 
 # Schema exigido no POST (Criação)
 class IncidenteCreate(IncidenteBase):
     impressora_id: int = Field(..., description="ID da impressora cadastrada no banco")
 
+
 # Schema exigido no PUT (Atualização/Solução)
 class IncidenteUpdate(BaseModel):
-    status_resolvido: bool = Field(..., description="Define se o incidente foi solucionado (True) ou não (False)")
+    status_resolvido: bool = Field(
+        ..., description="Define se o incidente foi solucionado (True) ou não (False)"
+    )
+
 
 # Schema de Saída (O que a API devolve)
 class IncidenteResponse(IncidenteBase):
