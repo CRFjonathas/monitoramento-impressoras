@@ -38,6 +38,7 @@ files = [
 
 [package.dependencies]
 idna = ">=2.8"
+typing_extensions = {version = ">=4.5", markers = "python_version < \"3.13\""}
 
 [package.extras]
 trio = ["trio (>=0.32.0)"]
@@ -330,7 +331,11 @@ files = [
 detect-installer = ">=0.1.0"
 fastar = ">=0.10.0"
 httpx = ">=0.27.0"
-pydantic = {version = ">=2.12.0", extras = ["email"], markers = "python_version >= \"3.14\""}
+pydantic = [
+    {version = ">=2.7.4", extras = ["email"], markers = "python_version < \"3.13\""},
+    {version = ">=2.8.0", extras = ["email"], markers = "python_version == \"3.13\""},
+    {version = ">=2.12.0", extras = ["email"], markers = "python_version >= \"3.14\""},
+]
 rich-toolkit = ">=0.20.1"
 rignore = ">=0.5.1"
 sentry-sdk = ">=2.20.0"
@@ -998,7 +1003,10 @@ files = [
 ]
 
 [package.dependencies]
-numpy = {version = ">=2.3.3", markers = "python_version >= \"3.14\""}
+numpy = [
+    {version = ">=1.26.0", markers = "python_version < \"3.14\""},
+    {version = ">=2.3.3", markers = "python_version >= \"3.14\""},
+]
 python-dateutil = ">=2.8.2"
 tzdata = {version = "*", markers = "sys_platform == \"win32\" or sys_platform == \"emscripten\""}
 
@@ -1795,6 +1803,7 @@ files = [
 
 [package.dependencies]
 anyio = ">=3.6.2,<5"
+typing-extensions = {version = ">=4.10.0", markers = "python_version < \"3.13\""}
 
 [package.extras]
 full = ["httpx (>=0.27.0,<0.29.0)", "httpx2 (>=2.0.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.18)", "pyyaml"]
@@ -2159,5 +2168,5 @@ files = [
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.14"
-content-hash = "3e24642d1324b947ccd162fc74f5e56908e61cac42c95a6ef97dbd80ebae9f1c"
+python-versions = ">=3.12"
+content-hash = "a83034cdcbafeeebbbbb2655f1a1cb4a45d49da89d075cead76c678bb2a1a654"

@@ -7,6 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.monitoramento_impressoras.core.database import SessionLocal, engine, Base
 from src.monitoramento_impressoras.models.impressora_model import Impressora
+from src.monitoramento_impressoras.models.incidente_model import Incidente
 
 def processar_planilha(caminho_planilha: str):
     # Cria o arquivo banco.db e a estrutura da tabela
