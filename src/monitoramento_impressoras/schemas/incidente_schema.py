@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 
 
@@ -29,5 +29,4 @@ class IncidenteResponse(IncidenteBase):
     data_registro: datetime
 
     # Permite que o Pydantic leia diretamente os objetos do SQLAlchemy
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
