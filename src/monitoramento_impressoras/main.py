@@ -10,7 +10,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# --- CONFIGURAÇÃO DE CORS ---
+
 origens_permitidas = [
     "http://localhost:3000",
     "http://localhost:5173",
@@ -25,7 +25,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# ----------------------------
 
 # Acoplamento das Rotas
 app.include_router(rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"])
