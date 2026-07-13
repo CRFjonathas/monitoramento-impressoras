@@ -15,7 +15,8 @@ dependencies = [
     "requests (>=2.34.2,<3.0.0)",
     "jinja2 (>=3.1.6,<4.0.0)",
     "pandas (>=3.0.3,<4.0.0)",
-    "openpyxl (>=3.1.5,<4.0.0)"
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "ruff (>=0.15.21,<0.16.0)"
 ]
 
 [tool.poetry]
@@ -24,3 +25,10 @@ packages = [{include = "monitoramento_impressoras", from = "src"}]
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.1.1,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "httpx2 (>=2.5.0,<3.0.0)"
+]

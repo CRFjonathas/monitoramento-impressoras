@@ -1,13 +1,25 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+<<<<<<< HEAD
+from src.monitoramento_impressoras.api import (
+    rotas_impressao,
+    rotas_manutencao,
+)  # <--- NOVA IMPORTAÇÃO
+from src.monitoramento_impressoras.api import (
+    rotas_impressao,
+    rotas_manutencao,
+    rotas_telemetria,
+)
+=======
 from fastapi.middleware.cors import CORSMiddleware 
 
 from src.monitoramento_impressoras.api import rotas_impressao, rotas_manutencao, rotas_telemetria
+>>>>>>> 86ab4c84aab3a85a44658e223c703cfb7ce41470
 
 app = FastAPI(
     title="Centro de Comando de Telemetria",
     description="Sistema de gerenciamento, monitoramento (Zabbix) e manutenção do parque de impressão.",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # --- CONFIGURAÇÃO DE CORS ---
@@ -30,13 +42,27 @@ app.add_middleware(
 # ----------------------------
 
 # Acoplamento das Rotas
+<<<<<<< HEAD
+app.include_router(
+    rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"]
+)
+app.include_router(
+    rotas_manutencao.router, prefix="/api/v1/manutencao", tags=["Manutenção"]
+)
+app.include_router(
+    rotas_telemetria.router, prefix="/api/v1/telemetria", tags=["Monitoramento Zabbix"]
+)
+
+=======
 app.include_router(rotas_impressao.router, prefix="/api/v1/impressao", tags=["Motor de Impressão"])
 app.include_router(rotas_manutencao.router, prefix="/api/v1/manutencao", tags=["Manutenção"])
 app.include_router(rotas_telemetria.router, prefix="/api/v1/telemetria", tags=["Monitoramento Zabbix"])
+>>>>>>> 86ab4c84aab3a85a44658e223c703cfb7ce41470
 
 @app.get("/", include_in_schema=False)
 async def root():
     return RedirectResponse(url="/docs")
+
 
 @app.get("/health", tags=["Sistema"])
 async def health_check():
