@@ -1,7 +1,10 @@
 import os
 import requests
 from typing import Optional
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 class ZabbixService:
     def __init__(self):
@@ -49,6 +52,8 @@ class ZabbixService:
 
     def buscar_dados_impressora(self, ip: str) -> dict:
         """Busca o Host no Zabbix pelo IP e extrai os itens (toner/contador)"""
+
+    
         if not self.auth_token:
             sucesso = self.autenticar()
             if not sucesso:
